@@ -23,15 +23,24 @@ class App extends Component {
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
           <Route path='/home' component={(props) => (
+            //checkes token
             <Protected component={Home} {...props} />
           )}/>
-          <Route path='/addChallenge' component={AddChallenge} />
+          <Route path='/addChallenge' component={(props) => (
+            <Protected component={AddChallenge} {...props} />
+          )}/>
           <Route path='/challenge' component={(props) => (
             <Protected component={Challenge} {...props} />
           )}/>
-          <Route path='/slinger' component={Slinger} />
-          <Route path='/history' component={History} />
-          <Route path='/:sling' component={Sling} />
+          <Route path='/slinger' component={(props) => (
+            <Protected component={Slinger} {...props} />
+          )}/>
+          <Route path='/history' component = {(props) => (
+            <Protected component={History} {...props} />
+          )}/>
+          <Route path='/:sling' component = {(props) => (
+            <Protected component={Sling} {...props} />
+          )}/>
           <Route path='/' component={LandingPage} />
         </Switch>
       </div>
