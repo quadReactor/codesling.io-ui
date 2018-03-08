@@ -11,13 +11,18 @@ import Button from '../../globals/Button';
 // );
 
 class EditorNavbar extends Component {
+  constructor() {
+    super();
+  }
   render() {
     return (
       <nav className="editor-navbar">
     <ul>
       <li>Item 1</li>
       <li>Item 2</li>
-      <li><a onClick={() => {window.localStorage.clear(); window.location.reload(); }}> Logout </a></li>
+      <li><a onClick={() => {window.localStorage.clear(); 
+      this.props.history.push('/')
+      }}> Logout </a></li>
     </ul>
   </nav>
     )
