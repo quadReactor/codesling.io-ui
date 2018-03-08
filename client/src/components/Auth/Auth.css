@@ -17,3 +17,9 @@
 
 .auth-link {
   margin-left: 5px; }
+
+.auth-error {
+  padding-top: 15px;
+  width: 300px;
+  display: block;
+  margin: auto; }

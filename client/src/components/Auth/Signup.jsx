@@ -13,7 +13,8 @@ export default class Signup extends Component {
     this.state = {
       email: '',
       password: '',
-      username: ''
+      username: '',
+      errorMessage: '',
     }
   }
 
@@ -27,10 +28,21 @@ export default class Signup extends Component {
     }
     try {
       const data = await axios.post(`http://localhost:3396/api/auth/signup`, body);
-      data ? this.props.history.push('/login') : this.props.history.push('/auth');
-    } catch (err) {
-      throw new Error(err);
+      if (data.data.message) {
+        return this.handleSignupError(data.data.message)
+      } else if (data) {
+        this.props.history.push('/login')
+      } else if (!data) {
+        this.props.history.push('/auth');
+      }
+    } catch (err) { 
+      console.error(err)
     }
+  }
+
+  handleSignupError = (error) => {
+      let errMess = `whoopsie doopsie... ${error[0]}`;
+      this.setState({errorMessage: errMess})
   }
 
   handleInputChange = (event) => {
@@ -67,6 +79,9 @@ export default class Signup extends Component {
             onClick={(e) => this.submitAuthData(e)}
             />
         </form>
+        <div>
+        <div className="auth-error">{this.state.errorMessage}</div>
+        </div>
       </div>
     )
   }

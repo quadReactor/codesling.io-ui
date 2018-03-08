@@ -6,7 +6,7 @@ const Logo = ({
   className
 }) => {
   return (
-    <img 
+    <img
       alt="Codesling.io Logo"
       className={`logo ${className ? className : ''}`}
       src={codeslingLogo}

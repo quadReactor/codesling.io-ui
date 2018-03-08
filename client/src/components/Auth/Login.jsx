@@ -13,7 +13,8 @@ export default class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      username: ''
+      username: '',
+      errorMessage: ''
     }
   }
 
@@ -27,13 +28,26 @@ export default class Login extends Component {
     }
     try {
       const data = await axios.post(`http://localhost:3396/api/auth/login`, body);
-      localStorage.setItem('email', data.data.email)
-      localStorage.setItem('id', data.data.id)
-      localStorage.setItem('token', data.data.token.accessToken)
-      data ? this.props.history.push('/home') : this.props.history.push('/login');
+      if (data.data.message) {
+        return this.handleSignupError(data.data.message)
+      } else if (data) {
+        localStorage.setItem('email', data.data.email)
+        localStorage.setItem('id', data.data.id)
+        localStorage.setItem('token', data.data.token.accessToken)
+        this.props.history.push('/home')
+      } else if (!data) {
+        this.props.history.push('/login');
+      }
     } catch (err) {
-      throw new Error(err);
+      err.message.slice(-3) 
+        ? this.setState({errorMessage: "Username and/or Password are not valid. Please Try again!"})
+        : console.error(err)
     }
+  }
+
+  handleSignupError = (error) => {
+    let errMess = `whoopsie doopsie... ${error[0]}`;
+    this.setState({errorMessage: errMess})
   }
 
   handleInputChange = (event) => {
@@ -64,6 +78,7 @@ export default class Login extends Component {
             onClick={(e) => this.submitAuthData(e)}
             />
         </form>
+        <div className="auth-error">{this.state.errorMessage}</div>
       </div>
     )
   }
