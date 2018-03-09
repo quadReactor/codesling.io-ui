@@ -5,11 +5,16 @@ import axios from 'axios';
 import Button from '../globals/Button';
 import Logo from '../globals/Logo';
 
+import EditorNavbar from '../Sling/EditorHeader';
+
 import './LandingPage.css';
 
 let slingId;
 
 class Home extends Component {
+  constructor() {
+    super();
+  }
   state = {
     allChallenges: [],
     selectedChallenge: {}
@@ -48,9 +53,10 @@ class Home extends Component {
   render() {
     return (
       <div className="landing-page-container">
-        <Logo
+        {/* <Logo
           className="landing-page-logo"
-        />
+        /> */}
+        <EditorNavbar history={this.props.history} />
         <br />
         <select onChange={(e) => this.handleChallengeSelect(e)}>
           {this.state.allChallenges.map(challenge => {
