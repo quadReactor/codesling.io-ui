@@ -12,6 +12,14 @@ class Friend extends Component {
     check: false
   };
 
+  fetchFriends = async () => {
+    const id = localStorage.getItem("id");
+    const { data } = await axios.get(
+      `http://localhost:3396/api/friends/fetchAllFriends/${id}`
+    );
+    this.setState({ friends: data });
+  }
+  
   addFriend = async () => {
     const user = this.state.name;
     const { data } = await axios.get(
@@ -28,27 +36,24 @@ class Friend extends Component {
         search: ""
       });
     }
-    // e.preventDefault();
+    this.fetchFriends();
+
   };
 
   removeFriend = async (friend) => {
     const userId = localStorage.getItem("id");
     const friendId = friend;
     const {data} = await axios.delete(`http://localhost:3396/api/friends/deleteFriend/${userId}/${friendId}`);
-    console.log(data)
+    this.fetchFriends();
   };
 
-  async componentDidMount() {
-    const id = localStorage.getItem("id");
-    const { data } = await axios.get(
-      `http://localhost:3396/api/friends/fetchAllFriends/${id}`
-    );
-    this.setState({ friends: data });
+  componentDidMount() {
+    this.fetchFriends();
   }
 
   handleChange = e => {
     const { name, value } = e.target;
-    this.setState({ [name]: value }, () => console.log(this.state[name]));
+    this.setState({ [name]: value });
   };
 
   render() {
