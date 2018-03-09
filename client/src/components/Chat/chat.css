@@ -1,0 +1,6 @@
+.chat-message {
+  max-height: 300px;
+  overflow: scroll;
+  background-color: white;
+  color: black
+}
