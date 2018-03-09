@@ -18,8 +18,16 @@ class EditorNavbar extends Component {
     return (
       <nav className="editor-navbar">
     <ul>
-      <li>Item 1</li>
-      <li>Item 2</li>
+      <li><a onClick={() => { this.props.history.push(`/home`)
+      }} > Home</a></li>
+      {/* <li><a onClick={() => { 
+        this.props.history.push(`${this.props.history.location.pathname}`)
+      }} > Back To Dual </a></li> */}
+      <li><a onClick={() => { 
+       console.log("click takes you to friend component to chat with them to send dual link, click back to dual to go back to live Dual");
+      }} > Friends </a></li>
+      <li><a onClick={() => { this.props.history.push('/history')
+      }} >History</a></li>
       <li><a onClick={() => {window.localStorage.clear(); 
       this.props.history.push('/')
       }}> Logout </a></li>

@@ -34,6 +34,7 @@ export default class Login extends Component {
         localStorage.setItem('email', data.data.email)
         localStorage.setItem('id', data.data.id)
         localStorage.setItem('token', data.data.token.accessToken)
+        localStorage.setItem('username', data.data.username)
         this.props.history.push('/home')
       } else if (!data) {
         this.props.history.push('/login');
