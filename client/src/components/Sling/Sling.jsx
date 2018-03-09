@@ -3,6 +3,7 @@ import CodeMirror from 'react-codemirror2';
 import io from 'socket.io-client/dist/socket.io.js';
 import axios from 'axios';
 import { throttle } from 'lodash';
+import Chat from '../Chat/index.jsx'
 
 import Stdout from './StdOut/index.jsx';
 import EditorHeader from './EditorHeader';
@@ -108,6 +109,8 @@ class Sling extends Component {
             color="white"
             onClick={() => this.submitCode()}
           />
+          Hello
+          <Chat socket={this.props.socket} /> 
         </div>
         <div className="code2-editor-container">
           <CodeMirror 
