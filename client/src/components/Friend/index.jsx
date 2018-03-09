@@ -60,7 +60,7 @@ class Friend extends Component {
     return (
       <div>
         <EditorNavbar history={this.props.history} />
-        <div>
+        <form>
           <Input
             type="text"
             placeholder="Search For Your Friend"
@@ -75,10 +75,14 @@ class Friend extends Component {
             text="Submit"
             onClick={this.addFriend}
           />
-        </div>
+        </form>
         <div>
           <h3>Friends</h3>
           <FriendList friends={this.state.friends} removeFriend={this.removeFriend} />
+        </div>
+        <div>
+          <h3>Messages</h3>
+          
         </div>
       </div>
     );
