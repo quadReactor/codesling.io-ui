@@ -7,7 +7,11 @@ import Logo from '../../globals/Logo';
 
 import './Auth.css';
 
+import EditorNavbar from '../../Sling/EditorHeader';
 class AddChallenge extends Component {
+  constructor() {
+    super();
+  }
   state = { 
     title: '',
     content: '',
@@ -37,9 +41,7 @@ class AddChallenge extends Component {
   render() {
     return (
       <div className="login-form-container">
-        <Logo
-          className="landing-page-logo"
-        />
+        <EditorNavbar history={this.props.history} />
         <form className="auth-form">
           <Input
             name='title'

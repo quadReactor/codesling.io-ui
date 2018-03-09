@@ -3,7 +3,11 @@ import axios from 'axios';
 
 import { HistoryList } from './HistoryList.jsx';
 
+import EditorNavbar from '../Sling/EditorHeader';
 class History extends Component {
+  constructor() {
+    super();
+  }
   state = { 
     history: []
   }
@@ -17,6 +21,7 @@ class History extends Component {
   render() {
     return (
       <div>
+        <EditorNavbar history={this.props.history} />
         <HistoryList history={this.state.history}/>
       </div>
     );
