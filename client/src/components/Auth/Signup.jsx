@@ -41,7 +41,7 @@ export default class Signup extends Component {
   }
 
   handleSignupError = (error) => {
-      let errMess = `whoopsie doopsie... ${error[0]}`;
+      let errMess = `oopsie doopsie... ${error[0]}`;
       this.setState({errorMessage: errMess})
   }
 
