@@ -1,17 +1,24 @@
 import React from "react";
+import Button from "../globals/Button";
 
-export const FriendList = ({ friend }) => {
+export const FriendList = ({ friends, removeFriend }) => {
   return (
     <div>
       
-      {/* {friends.map(friend => { */}
+      {friends.map((friend, index) => {
       return (
-      <li>
-        <div>Friend</div>
+      <li key={index}>
+        <div>{friend.username}</div>
+        <Button
+            backgroundColor="red"
+            color="white"
+            text="Delete"
+            onClick={() => removeFriend(friend.id)}
+          />
       </li>
       )
-      {/* })
-        } */}
+       })
+        } 
     </div>
   );
 };
