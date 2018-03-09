@@ -24,6 +24,7 @@ class EditorNavbar extends Component {
         this.props.history.push(`${this.props.history.location.pathname}`)
       }} > Back To Dual </a></li> */}
       <li><a onClick={() => { 
+       this.props.history.push('/friend')
        console.log("click takes you to friend component to chat with them to send dual link, click back to dual to go back to live Dual");
       }} > Friends </a></li>
       <li><a onClick={() => { this.props.history.push('/history')
