@@ -20,9 +20,9 @@ class EditorNavbar extends Component {
     <ul>
       <li><a onClick={() => { this.props.history.push(`/home`)
       }} > Home</a></li>
-      <li><a onClick={() => { 
+      {/* <li><a onClick={() => { 
         this.props.history.push(`${this.props.history.location.pathname}`)
-      }} > Back To Dual </a></li>
+      }} > Back To Dual </a></li> */}
       <li><a onClick={() => { 
        console.log("click takes you to friend component to chat with them to send dual link, click back to dual to go back to live Dual");
       }} > Friends </a></li>
