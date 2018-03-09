@@ -18,8 +18,10 @@ class EditorNavbar extends Component {
     return (
       <nav className="editor-navbar">
     <ul>
-      <li>Item 1</li>
-      <li>Item 2</li>
+      <li><a onClick={() => { this.props.history.push(`${this.props.history.location.pathname}`)
+      }} >Dual</a></li>
+      <li><a onClick={() => { this.props.history.push('/history')
+      }} >History</a></li>
       <li><a onClick={() => {window.localStorage.clear(); 
       this.props.history.push('/')
       }}> Logout </a></li>
