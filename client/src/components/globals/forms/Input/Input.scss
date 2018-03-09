@@ -10,3 +10,26 @@ input[type="password"] {
   padding: 12px 18px;
   margin: 1em 0;
 }
+
+input[type="title"],
+input[type="difficulty"] {
+  border: 0;
+  margin: 0;
+  width: 50%;
+  border-radius: 2px;
+  display: block;
+  padding: 12px 18px;
+  margin: 1em 0;
+}
+
+
+input[type="content"],
+input[type="test case"] {
+  border: 0;
+  margin: 0;
+  width: 100%;
+  border-radius: 2px;
+  display: block;
+  padding: 40px 18px;
+  margin: 1em 0;
+}
