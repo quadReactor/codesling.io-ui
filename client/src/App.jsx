@@ -11,13 +11,8 @@ import Challenge from './components/Challenge/index.jsx';
 import AddChallenge from './components/Challenge/AddChallenge/index.jsx';
 import Protected from './components/globals/Protected';
 import History from './components/History/index.jsx';
-<<<<<<< HEAD
 import Friend from './components/Friend/index.jsx';
-=======
 
-
-
->>>>>>> [fix] .env works
 class App extends Component {
   constructor() {
     super();

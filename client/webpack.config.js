@@ -7,8 +7,6 @@ const path = require('path');
 // require('dotenv').config();
 const Dotenv = require('dotenv-webpack');
 
-console.log(process.env)
-
 const options = {
   devTool: 'source-map',
   uglify: {}
