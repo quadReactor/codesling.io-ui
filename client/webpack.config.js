@@ -1,8 +1,11 @@
-// require('dotenv').config();
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
+const path = require('path');
+
+// require('dotenv').config();
+const Dotenv = require('dotenv-webpack');
 
 const options = {
   devTool: 'source-map',
@@ -20,7 +23,8 @@ const options = {
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
   output: {
-    filename: './public/bundle.js'
+    filename: './bundle.js',
+    path: path.resolve(__dirname, './public'),
   },
   watch: true,
   devtool: options.devTool,
@@ -65,7 +69,11 @@ module.exports = {
       }
     ]
   },
-  // plugins: [
+  plugins: [
+      new Dotenv()
+    ]
+  //   new Dotenv()
+
   //   new ExtractTextPlugin('./client/styles/main.css', {
   //     allChunks: true
   //   }),

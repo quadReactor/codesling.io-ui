@@ -87,6 +87,7 @@ class Sling extends Component {
         <EditorHeader history={this.props.history}/>
         <div className="code1-editor-container">
           <CodeMirror
+            className="CodeMirror.round"
             editorDidMount={this.initializeEditor}
             value={this.state.ownerText}
             options={{

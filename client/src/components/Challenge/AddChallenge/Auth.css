@@ -17,3 +17,14 @@
 
 .auth-link {
   margin-left: 5px; }
+
+.challenge-creator-container {
+  border: 0;
+  margin: 0;
+  width: 100%;
+  border-radius: 2px;
+  display: block;
+  margin: 1em 0; }
+
+#code {
+  border-radius: 2px; }

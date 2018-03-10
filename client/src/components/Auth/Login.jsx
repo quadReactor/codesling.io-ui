@@ -8,6 +8,8 @@ import Logo from '../globals/Logo';
 
 import './Auth.css';
 
+const REST_SERVER_URL = process.env.REST_SERVER_URL;
+
 export default class Login extends Component {
   constructor() {
     super();
@@ -15,9 +17,11 @@ export default class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      username: ''
+      username: '',
+      errorMessage: ''
     }
   }
+
 
   submitAuthData = async (e) => {
     e.preventDefault();
@@ -28,15 +32,28 @@ export default class Login extends Component {
       username
     }
     try {
-      const data = await axios.post(`http://localhost:3396/api/auth/login`, body);
-      localStorage.setItem('email', data.data.email)
-      localStorage.setItem('id', data.data.id)
-      localStorage.setItem('username', data.data.username)
-      localStorage.setItem('token', data.data.token.accessToken)
-      data ? this.props.history.push('/home') : this.props.history.push('/login');
+      const data = await axios.post(`${REST_SERVER_URL}/api/auth/login`, body);
+      if (data.data.message) {
+        return this.handleSignupError(data.data.message)
+      } else if (data) {
+        localStorage.setItem('email', data.data.email)
+        localStorage.setItem('id', data.data.id)
+        localStorage.setItem('token', data.data.token.accessToken)
+        localStorage.setItem('username', data.data.username)
+        this.props.history.push('/home')
+      } else if (!data) {
+        this.props.history.push('/login');
+      }
     } catch (err) {
-      throw new Error(err);
+      err.message.slice(-3) 
+        ? this.setState({errorMessage: "Username and/or Password are not valid. Please Try again!"})
+        : console.error(err)
     }
+  }
+
+  handleSignupError = (error) => {
+    let errMess = `oopsie doopsie... ${error[0]}`;
+    this.setState({errorMessage: errMess})
   }
 
   handleInputChange = (event) => {
@@ -70,6 +87,7 @@ export default class Login extends Component {
             onClick={(e) => this.submitAuthData(e)}
             />
         </form>
+        <div className="auth-error">{this.state.errorMessage}</div>
       </div>
     )
   }
