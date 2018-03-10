@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import "./chat.css"
-
+import Input from "../globals/forms/Input";
+import Button from "../globals/Button";
 
 class Chat extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class Chat extends Component {
   
   componentDidMount() {
     const { socket } = this.props;
-    
     socket.on('server.chat', ( newMessage ) => {
       console.log(newMessage)
       var temp = newMessage.message
@@ -23,11 +23,10 @@ class Chat extends Component {
     });
   }
 
-  submit() {
-    
+  submit() {  
     const { socket } = this.props
     let wholeMessage = `${localStorage.username}: ${this.state.text}`
-    socket.emit('client.Chat',  {message: wholeMessage } )
+    socket.emit('client.chat',  {message: wholeMessage } )
 
   }
 
@@ -43,12 +42,14 @@ class Chat extends Component {
     return (
       <div>
         <div className="chat-message">
-          {messages.map( (message) => 
-            <div> {message} </div>
+          {messages.map( (message, index) => 
+            <div key={index}> {message} </div>
           )}
         </div>
-        <input type="text/css" onChange={ (e) => this.changeText(e)}/>
-        <input type="button" value="enter" onClick={()=> this.submit()} />
+        
+        <Input type="text/css" placeholder="Message Here" onChange={ (e) => this.changeText(e)}/>
+        <Button backgroundColor="red" color="white" text="Submit" onClick={()=> this.submit()} />
+        
       </div>
     );
   }

@@ -4,14 +4,28 @@ import Input from "../globals/forms/Input";
 import Button from "../globals/Button";
 import { FriendList } from "./FriendList.jsx";
 
+import io from 'socket.io-client/dist/socket.io.js';
+import Chat from '../Chat/index.jsx'
 import EditorNavbar from "../Sling/EditorHeader";
 
 class Friend extends Component {
   state = {
     friends: [],
-    check: false
+    check: false,
+    socket: null
   };
 
+  componentWillMount () {
+    //this is the handshake
+    this.socket = io('http://localhost:4155', {
+      query: {
+        //roomId cahnge it to what i want must be string removes / with slice 
+        roomId: '1234567890qwertyuiop'
+      }
+    });
+
+    this.setState({ socket: this.socket });
+  }
   fetchFriends = async () => {
     const id = localStorage.getItem("id");
     const { data } = await axios.get(
@@ -20,7 +34,8 @@ class Friend extends Component {
     this.setState({ friends: data });
   }
   
-  addFriend = async () => {
+  addFriend = async (e) => {
+    e.preventDefault()
     const user = this.state.name;
     const { data } = await axios.get(
       `http://localhost:3396/api/users/fetchSearchUser/${user}`
@@ -82,7 +97,7 @@ class Friend extends Component {
         </div>
         <div>
           <h3>Messages</h3>
-          
+          <Chat socket={this.state.socket} />
         </div>
       </div>
     );
