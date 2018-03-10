@@ -4,6 +4,8 @@ import axios from 'axios';
 import Input from '../globals/forms/Input';
 import Button from '../globals/Button/';
 
+import Logo from '../globals/Logo';
+
 import './Auth.css';
 
 export default class Login extends Component {
@@ -59,6 +61,9 @@ export default class Login extends Component {
   render() {
     return (
       <div className="login-form-container">
+      <Logo
+          className="landing-page-logo"
+        />
         <form className="auth-form">
           <Input
             name='email'

@@ -8,7 +8,8 @@
 
 .login-form-container,
 .signup-form-container {
-  width: 100%; }
+  width: 100%; 
+  text-align: center;}
 
 .auth-form {
   margin: auto;
@@ -18,8 +19,6 @@
 .auth-link {
   margin-left: 5px; }
 
-.auth-error {
-  padding-top: 15px;
+.landing-page-logo {
   width: 300px;
-  display: block;
-  margin: auto; }
+  margin: 50px 0; }
