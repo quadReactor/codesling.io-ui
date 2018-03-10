@@ -1,9 +1,13 @@
-// require('dotenv').config();
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
+
+// require('dotenv').config();
+const Dotenv = require('dotenv-webpack');
+
+console.log(process.env)
 
 const options = {
   devTool: 'source-map',
@@ -67,7 +71,11 @@ module.exports = {
       }
     ]
   },
-  // plugins: [
+  plugins: [
+      new Dotenv()
+    ]
+  //   new Dotenv()
+
   //   new ExtractTextPlugin('./client/styles/main.css', {
   //     allChunks: true
   //   }),

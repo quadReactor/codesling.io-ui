@@ -8,6 +8,8 @@ import Logo from '../globals/Logo';
 
 import './Auth.css';
 
+const REST_SERVER_URL = process.env.REST_SERVER_URL;
+
 export default class Login extends Component {
   constructor() {
     super();
@@ -20,6 +22,7 @@ export default class Login extends Component {
     }
   }
 
+
   submitAuthData = async (e) => {
     e.preventDefault();
     const { email, password, username } = this.state;
@@ -29,7 +32,7 @@ export default class Login extends Component {
       username
     }
     try {
-      const data = await axios.post(`http://localhost:3396/api/auth/login`, body);
+      const data = await axios.post(`${REST_SERVER_URL}/api/auth/login`, body);
       if (data.data.message) {
         return this.handleSignupError(data.data.message)
       } else if (data) {

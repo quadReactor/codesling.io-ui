@@ -8,13 +8,12 @@ import Logo from '../../globals/Logo';
 
 import './Auth.css';
 
-<<<<<<< HEAD
 import EditorNavbar from '../../Sling/EditorHeader';
-=======
 import 'codemirror/mode/javascript/javascript.js';
 
+const REST_SERVER_URL = process.env.REST_SERVER_URL;
 
->>>>>>> More auth fixes
+
 class AddChallenge extends Component {
   constructor() {
     super();
@@ -37,7 +36,7 @@ class AddChallenge extends Component {
       user_id: id,
       type: 0
     }
-    const result = await axios.post('http://localhost:3396/api/challenges', body);
+    const result = await axios.post(`${REST_SERVER_URL}/api/challenges`, body);
     this.props.history.push('/home');
   }
 
