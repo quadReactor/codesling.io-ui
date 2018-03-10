@@ -9,8 +9,10 @@ class SlingIndex extends Component {
    }
 
   componentWillMount() {
+    //this is the handshake
     this.socket = io('http://localhost:4155', {
       query: {
+        //roomId
         roomId: this.props.location.pathname.slice(1)
       }
     });
